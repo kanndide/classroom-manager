@@ -1,0 +1,2 @@
+class UserLecturesController < ApplicationController
+end

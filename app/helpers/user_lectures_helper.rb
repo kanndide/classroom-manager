@@ -1,0 +1,2 @@
+module UserLecturesHelper
+end
