@@ -28,15 +28,6 @@ let(:user_teacher) {
     )
   }
 
- let(:user_info) {
-     UserInfo.create(
-      :first_name => "John",
-      :last_name => "Smith",
-      :bio => "I am a Junior studying pre-med.",
-      :user_id => 1
-     )
-   }
-
   it "is valid with a username, password, email" do
     expect(user_student).to be_valid
   end
@@ -57,5 +48,6 @@ let(:user_teacher) {
     expect(user_student.admin).to eq(false)
     expect(user_student.teacher).to eq(false)
   end
+
 
 end

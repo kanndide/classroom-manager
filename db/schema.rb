@@ -10,21 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_06_193248) do
-
-  create_table "user_infos", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.text "bio"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 2018_07_06_195059) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
     t.string "password_digest"
+    t.string "first_name"
+    t.string "last_name"
+    t.text "bio"
     t.boolean "teacher", default: false
     t.boolean "admin", default: false
     t.datetime "created_at", null: false
