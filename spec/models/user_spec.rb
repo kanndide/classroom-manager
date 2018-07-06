@@ -30,10 +30,10 @@ let(:user_teacher) {
 
  let(:user_info) {
      UserInfo.create(
-       :first_name => “John”
-       :last_name => “Smith”
-       :bio => “I am a Junior studying         premed.”
-       :user_id => 1
+      :first_name => "John",
+      :last_name => "Smith",
+      :bio => "I am a Junior studying pre-med.",
+      :user_id => 1
      )
    }
 
@@ -42,7 +42,7 @@ let(:user_teacher) {
   end
 
   it "is not valid without a password" do
-    expect(User.new(name: "Name")).not_to be_valid
+    expect(User.new(username: "Name")).not_to be_valid
   end
 
   it "is valid with an admin boolean" do
