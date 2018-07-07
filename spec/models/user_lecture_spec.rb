@@ -1,5 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe UserLecture, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:lecture) {
+    Lecture.create(
+      :name => "American Literature",
+      :time => "1500",
+      :day => "Monday, Wednesday, Firday",
+      :location => "Room 100"
+    )
+  }
+
 end
