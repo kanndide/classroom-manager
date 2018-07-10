@@ -4,9 +4,8 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'signin' => 'sessions#new'
   post 'signin' => 'sessions#create'
-  resources :school_users
+  post '/logout', to: 'sessions#destroy'
   resources :schools
-  resources :user_lectures
   resources :lectures
   resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

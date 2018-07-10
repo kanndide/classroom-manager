@@ -5,7 +5,11 @@ class UsersController < ApplicationController
 	end
 
 	def show
-
+		if logged_in?
+			@user = current_user
+		else
+			redirect_to signin_path
+		end
 	end
 
 	def update

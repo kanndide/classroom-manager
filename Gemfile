@@ -21,6 +21,7 @@ gem 'autoprefixer-rails'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'dotenv-rails'
+gem 'pry'
 
 
 # Use CoffeeScript for .coffee assets and views
