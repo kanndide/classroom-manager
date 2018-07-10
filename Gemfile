@@ -18,6 +18,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'bcrypt'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'dotenv-rails'
 
 
 # Use CoffeeScript for .coffee assets and views

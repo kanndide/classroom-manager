@@ -1,0 +1,12 @@
+<h1> Sign In </h1>
+<%= form_tag('/signin', method: "post") do |f| %>
+	<%= label_tag :username %>
+	<%= text_field_tag :username %><br>
+	<%= label_tag :password %>
+	<%= text_field_tag :password %><br>
+	<%= label_tag :password %>
+	<%= text_field_tag :password %><br>
+	<%= submit_tag 'Sign In'%><br>
+<% end %>
+
+<%= link_to 'Twitter', '/auth/twitter' %>
