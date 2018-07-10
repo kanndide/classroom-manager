@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 			redirect_to user_path(@user)
 		else
 			@user = User.find_by(name: params[:username])
-			if @user.authenticate(params[:password]) && params[:username] != ""
+			if @user && @user.authenticate(params[:password]) && params[:username] != ""
 	    		log_in(@user)
 	    		flash[:success] = "Welcome, #{@user.username}!"
 	    		redirect_to user_path(@user)
