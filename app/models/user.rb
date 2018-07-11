@@ -25,7 +25,7 @@ class User < ApplicationRecord
   	end
 
   	def is_profile_complete?
-  		!!self.first_name && !!self.last_name && !!self.email
+  		!!self.first_name && !!self.last_name && !!self.email && self.first_name != "" && self.last_name != "" && self.email != ""
   	end
 
 end

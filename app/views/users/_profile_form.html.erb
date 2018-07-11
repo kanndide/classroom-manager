@@ -1,10 +1,10 @@
 <%= form_for @user do |f| %>
 	<%= f.label :first_name %>
-	<%= f.text_field :first_name %><br>
+	<%= f.text_field :first_name, :required => true %><br>
 	<%= f.label :last_name %>
-	<%= f.text_field :last_name %><br>
+	<%= f.text_field :last_name, :required => true %><br>
 	<%= f.label :email %>
-	<%= f.text_field :email %><br>
+	<%= f.text_field :email, :required => true %><br>
 	<%= f.label "Tell us about yourself:", :bio %>
 	<%= f.text_area :bio %><br>
 	<%= f.submit %>
