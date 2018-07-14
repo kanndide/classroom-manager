@@ -1,8 +1,16 @@
 <h1><%= @user.username %></h1>
+
+<% if @user.teacher %>
+	<h3>Teacher</h3>
+<% end %>
+
 <% if @user.is_profile_complete? %>
 	<p><%= @user.first_name %> <%= @user.last_name %></p><br>
 	<p><%= @user.email %></p><br>
+	<h5>About Me:</h5>
+	<p><%= @user.bio %></p><br>
 <% else %>
 	<%= link_to "Please complete your profile.", edit_user_path(@user) %><br>
 <% end %>
+
 <%= link_to "Log Out", logout_path, action: 'destroy', method: 'post' %>

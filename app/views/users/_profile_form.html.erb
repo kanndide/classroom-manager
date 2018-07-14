@@ -1,11 +1,35 @@
 <%= form_for @user do |f| %>
+
+	<% if @user.errors.any? %>
+	  <div id="error_explanation">
+	    <h2>
+	      <%= pluralize(@user.errors.count, "error") %>
+	      prohibited this post from being saved:
+	    </h2>
+	 
+	    <ul>
+	    <% @user.errors.full_messages.each do |msg| %>
+	      <li><%= msg %></li>
+	    <% end %>
+	    </ul>
+	  </div>
+	<% end %>
+
 	<%= f.label :first_name %>
 	<%= f.text_field :first_name, :required => true %><br>
 	<%= f.label :last_name %>
 	<%= f.text_field :last_name, :required => true %><br>
 	<%= f.label :email %>
 	<%= f.text_field :email, :required => true %><br>
-	<%= f.label "Tell us about yourself:", :bio %>
+	<%= f.label "Tell us about yourself:" %><br>
 	<%= f.text_area :bio %><br>
+
+	<% if current_user.admin %>
+		<%= f.label :teacher %>
+		<%= f.check_box :teacher %><br>
+		<%= f.label :admin %>
+		<%= f.check_box :admin %><br>
+	<% end %>
+
 	<%= f.submit %>
 <% end %>

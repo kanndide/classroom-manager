@@ -9,6 +9,7 @@
 
   <body>
     <%= render 'shared/navigation' %>
+    
     <div class="container-fluid text-center"> 
 
       <div class="row">
@@ -19,12 +20,14 @@
         </div>
       </div>
    
-      <% if !!@user %>
-        <div class="col-sm-2 sidenav">
-          <p><a href="#">Link</a></p>
-          <p><a href="#">Link</a></p>
-          <p><a href="#">Link</a></p>
-        </div>
+      <% if !!@user %>   
+        <% if @user.id == params[:id].to_i || @user.admin  %>
+          <div class="col-sm-2 sidenav">
+            <p><a href="#">View Schedule</a></p>
+            <p><%= link_to "Edit Profile", edit_user_path(User.find(params[:id])) %></p>
+            <p><a href="#">Delete Account</a></p>
+          </div>
+        <% end %>
       <% end %>
       
       <div class="col-sm-8 text-left"> 
