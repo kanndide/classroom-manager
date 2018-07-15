@@ -4,8 +4,7 @@ class LecturesController < ApplicationController
 
 	def index
 		@user = current_user
-		@lectures = @user.lectures
-		binding.pry
+		@lectures = Lecture.all
 	end
 
 	def new
@@ -19,7 +18,7 @@ class LecturesController < ApplicationController
 		else
 			@lecture = Lecture.new(lecture_params)
 			if @lecture.save
-				UserLecture.create(:user_id => current_user.id, :lecture_id => @lecture.id)
+				UserLecture.create(:user_id => current_user.id, :lecture_id => @lecture.id) unless current_user.admin && !current_user.teacher
 				flash[:success] = "#{@lecture.name} has been successfully added."
 				redirect_to user_lectures_path(current_user)
 			else
@@ -30,7 +29,8 @@ class LecturesController < ApplicationController
 	end
 
 	def show
-
+		@lecture = Lecture.find(params[:id])
+		@users = @lecture.users
 	end
 
 	def edit

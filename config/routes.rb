@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   resources :users do
   	resources :schools, only: [:new, :edit, :destroy]
   	resources :lectures, only: [:index, :new, :edit, :show, :destroy]
+    resources :school_users, only: [:new]
   end
+  resources :user_lectures, only: [:create]
+  resources :school_users, only: [:create]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

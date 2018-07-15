@@ -21,7 +21,7 @@
       </div>
    
       <% if !!@user %>   
-        <% if @user.id == params[:id].to_i || @user.admin  %>
+        <% if current_user.id == params[:id].to_i || current_user.admin  %>
           <div class="col-sm-2 sidenav">
             <p><a href="#">View Schedule</a></p>
             <p><%= link_to "Edit Profile", edit_user_path(User.find(params[:id])) %></p>

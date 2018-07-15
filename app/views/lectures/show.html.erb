@@ -1,0 +1,6 @@
+<h1><%= @lecture.name %></h1>
+<h3>Teacher: <%= @users.teacher %></h3>
+<h5><%= @lecture.semester %> Semester</h5><br>
+<p><%= @lecture.time %></p><br>
+<p><%= @lecture.location %></p><br>
+<%= link_to "Add Lecture to Schedule", '/user_lectures' action: 'create', method: 'post' %>
