@@ -4,14 +4,16 @@ class LecturesController < ApplicationController
 
 	def index
 		@user = current_user
-		@lectures = Lecture.all
+		@lectures = current_user.lectures
 	end
 
 	def new
 		@lecture = Lecture.new
+		@schools = current_user.schools
 	end
 
 	def create
+		binding.pry
 		if Lecture.exists?(params[:lecture])
 			flash[:danger] = "That lecture already exists in our system."
 			redirect_to new_user_lecture_path(current_user)
@@ -57,7 +59,7 @@ class LecturesController < ApplicationController
 	private
 
 	def lecture_params
-		params.require(:lecture).permit(:name, :time, :day, :location, :semester)
+		params.require(:lecture).permit(:name, :time, :day, :location, :semester, :school_id)
 	end
 
 	def require_teacher

@@ -5,12 +5,12 @@ Rails.application.routes.draw do
   get 'signin' => 'sessions#new'
   post 'signin' => 'sessions#create'
   post '/logout', to: 'sessions#destroy'
-  resources :schools, only: [:index, :show, :create, :update] do
+  resources :schools, only: [:index, :show, :create, :update, :destroy] do
     resources :lectures, only: [:index]
   end
   resources :lectures, only: [:show, :create, :update]
   resources :users do
-  	resources :schools, only: [:new, :edit, :destroy]
+  	resources :schools, only: [:new, :edit]
   	resources :lectures, only: [:index, :new, :edit, :show, :destroy]
     resources :school_users, only: [:new]
   end

@@ -7,5 +7,7 @@
 	<%= f.text_field :day %><br>
 	<%= f.label :semester %>
 	<%= f.text_field :semester %><br>
+	<%= f.label "Please choose a school for this lecture:" %><br>
+	<%= f.collection_select(:school_id, @schools, :id, :name) %><br>
 	<%= f.submit %>
 <% end %>
