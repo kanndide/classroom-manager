@@ -1,6 +1,10 @@
 <h1><%= @lecture.name %></h1>
-<h3>Teacher: <%= @users.teacher %></h3>
+<% @users.each do |user| %>
+	<% if user.teacher %>
+		<h3>Teacher: <%= user.last_name %>, <%= user.first_name %></h3>
+	<% end %>
+<% end %>
 <h5><%= @lecture.semester %> Semester</h5><br>
 <p><%= @lecture.time %></p><br>
 <p><%= @lecture.location %></p><br>
-<%= link_to "Add Lecture to Schedule", '/user_lectures' action: 'create', method: 'post' %>
+<%= link_to "Add Lecture to Schedule", lectures_path, action: 'create', method: 'post' %>

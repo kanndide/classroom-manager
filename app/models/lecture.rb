@@ -8,6 +8,10 @@ class Lecture < ApplicationRecord
 		self.users.where(teacher: true)
 	end
 
+	def teacher_names
+		self.teacher.pluck(:last_name).flatten[0]
+	end
+
 	def students
 		self.user.where(teacher: false)
 	end	
