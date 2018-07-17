@@ -32,4 +32,5 @@ class User < ApplicationRecord
   		self.schools != []
   	end
 
+
 end

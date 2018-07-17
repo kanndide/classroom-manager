@@ -7,4 +7,9 @@
 <h5><%= @lecture.semester %> Semester</h5><br>
 <p><%= @lecture.time %></p><br>
 <p><%= @lecture.location %></p><br>
-<%= link_to "Add Lecture to Schedule", lectures_path, action: 'create', method: 'post' %>
+
+<%= link_to "Add Lecture to Schedule", lectures_path, action: 'create', method: 'post' %><br>
+
+	<% if current_user.teacher && @lecture.teacher.include?(current_user) || current_user.admin %>
+		<%= link_to "Delete Lecture", lecture_path(@lecture), action: 'destroy', method: 'delete' %>
+	<% end %>

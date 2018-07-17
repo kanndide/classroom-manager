@@ -8,10 +8,10 @@ Rails.application.routes.draw do
   resources :schools, only: [:index, :show, :create, :update, :destroy] do
     resources :lectures, only: [:index]
   end
-  resources :lectures, only: [:show, :create, :update]
+  resources :lectures, only: [:show, :create, :update, :destroy]
   resources :users do
   	resources :schools, only: [:new, :edit]
-  	resources :lectures, only: [:index, :new, :edit, :show, :destroy]
+  	resources :lectures, only: [:index, :new, :edit, :show]
     resources :school_users, only: [:new]
   end
   resources :user_lectures, only: [:create]

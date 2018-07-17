@@ -45,7 +45,7 @@ class LecturesController < ApplicationController
 
 		if @lecture.save
 			flash[:success] = "Changes have been saved."
-			redirect_to user_lectures_path
+			redirect_to user_lectures_path(current_user)
 		else
 			flash[:danger] = "Something went wrong. Please try again."
 			render :edit
@@ -53,7 +53,8 @@ class LecturesController < ApplicationController
 	end
 
 	def destroy
-
+		Lecture.find(params[:id]).destroy
+		redirect_to user_lectures_path(current_user)
 	end
 
 	private
