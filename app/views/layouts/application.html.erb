@@ -62,17 +62,31 @@
         <%= yield %>
       </div>
 
-      <div class="col-sm-2 sidenav">
+      <% if !!@user %>   
+        <% if current_user.id == params[:id].to_i || current_user.admin  %>
+          <div class="col-sm-2 sidenav">
+            <p><%= link_to "Add School", new_user_school_path(current_user), class: 'btn-success btn-lg' %><p><br>
+            <p><%= link_to edit_user_path(User.find(params[:id])), class: 'btn-info btn-lg' do %>
+              <i class="glyphicon glyphicon-pencil"></i> Edit Profile
+            <% end %></p><br>
+            <p><%= link_to user_path(User.find(params[:id])), action: 'destroy', method: 'delete', class: 'btn-danger btn-sm' do %>
+                <i class="fa fa-trash"></i> Delete Account
+              <% end %></p><br>
+          </div>
+        <% end %>
+      <% else %>
+          <div class="col-sm-2 sidenav">
         
-        <div class="well">
-          <p>Is this supposed to be ad space?</p>
-        </div>
-
-        <div class="well">
-          <p>I just want it to take up space...</p>
-        </div>
+            <div class="well">
+              <p>Something should go here.</p>
+            </div>
         
-      </div>
+            <div class="well">
+              <p>I wonder what.</p>
+            </div>
+        
+          </div>
+      <% end %>
     </div> <!-- Container end -->
   </body>
 </html>
