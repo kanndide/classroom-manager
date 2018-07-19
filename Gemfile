@@ -23,6 +23,7 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'dotenv-rails'
 gem 'pry'
+gem 'bootstrap_form', ">= 4.0.0.alpha1"
 
 
 # Use CoffeeScript for .coffee assets and views

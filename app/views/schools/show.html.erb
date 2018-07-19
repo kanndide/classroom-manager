@@ -1,0 +1,5 @@
+<h1><%= @school.name %></h1>
+<h3> List of all available lectures:</h3>
+<% @school.lectures.each do |lecture| %>
+	<%= link_to "#{lecture.name}, #{lecture.teacher_names} - #{lecture.time}", lecture_path(lecture) %><br>
+<% end %>

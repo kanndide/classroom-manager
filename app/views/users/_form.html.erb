@@ -1,4 +1,4 @@
-<%= form_for @user do |f| %>
+<%= bootstrap_form_for @user, layout: :inline do |f| %>
 
 	<% if @user.errors.any? %>
 	  <div id="error_explanation">
@@ -15,11 +15,12 @@
 	  </div>
 	<% end %>
 
-	<%= f.label :username %>
 	<%= f.text_field :username %><br>
-	<%= f.label :password %>
-	<%= f.text_field :password %><br>
-	<%= f.label :password_confirmation %>
-	<%= f.text_field :password_confirmation %><br>
-	<%= f.submit %>
+	<br>
+	<%= f.password_field :password %><br>
+	<br>
+	<%= f.password_field :password_confirmation, label: "Confirm Password" %><br>
+	<br>
+	<%= f.submit 'Update Password', class: 'btn-primary btn-md' %>
+	
 <% end %>

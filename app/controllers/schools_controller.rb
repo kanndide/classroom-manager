@@ -1,6 +1,7 @@
 class SchoolsController < ApplicationController
 
 	before_action :require_admin
+	skip_before_action :require_admin, only: [:show]
 
 	def index
 		@schools = School.all
@@ -24,6 +25,10 @@ class SchoolsController < ApplicationController
 				render :new
 			end
 		end
+	end
+
+	def show
+		@school = School.find(params[:id])
 	end
 
 	def edit

@@ -5,6 +5,15 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <style>
+
+      textarea.form-control {
+        min-width: 100%;
+        max-width: 100%;
+      }
+
+    </style>
   </head>
 
   <body>
@@ -23,26 +32,47 @@
       <% if !!@user %>   
         <% if current_user.id == params[:id].to_i || current_user.admin  %>
           <div class="col-sm-2 sidenav">
-            <p><a href="#">View Schedule</a></p>
-            <p><%= link_to "Edit Profile", edit_user_path(User.find(params[:id])) %></p>
-            <p><a href="#">Delete Account</a></p>
+            <p><%= link_to user_lectures_path(current_user), class: 'btn-success btn-lg' do %>
+              <i class="glyphicon glyphicon-tasks"></i> View Schedule
+            <% end %><p><br>
+            <p><%= link_to edit_user_path(User.find(params[:id])), class: 'btn-info btn-lg' do %>
+              <i class="glyphicon glyphicon-pencil"></i> Edit Profile
+            <% end %></p><br>
+            <p><%= link_to user_path(User.find(params[:id])), action: 'destroy', method: 'delete', class: 'btn-danger btn-sm' do %>
+                <i class="fa fa-trash"></i> Delete Account
+              <% end %></p><br>
           </div>
         <% end %>
+      <% else %>
+          <div class="col-sm-2 sidenav">
+        
+            <div class="well">
+              <p>Something should go here.</p>
+            </div>
+        
+            <div class="well">
+              <p>I wonder what.</p>
+            </div>
+        
+          </div>
       <% end %>
+
       
-      <div class="col-sm-8 text-left"> 
+      <div class="col-sm-8 text-centered"> 
         <%= yield %>
       </div>
 
       <div class="col-sm-2 sidenav">
+        
         <div class="well">
-          <p>Where am I at?</p>
+          <p>Is this supposed to be ad space?</p>
         </div>
+
         <div class="well">
-          <p>Where am I at, number 1?</p>
+          <p>I just want it to take up space...</p>
         </div>
         
       </div>
-    </div> <!-- Caontainer end -->
+    </div> <!-- Container end -->
   </body>
 </html>

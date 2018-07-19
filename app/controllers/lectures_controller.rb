@@ -1,9 +1,10 @@
 class LecturesController < ApplicationController
 
 	before_action :require_teacher
+	skip_before_action :require_teacher, only: [:index, :show]
 
 	def index
-		@user = current_user
+		
 		@lectures = current_user.lectures
 	end
 
@@ -36,11 +37,14 @@ class LecturesController < ApplicationController
 	end
 
 	def edit
-		@lecture = Lecture.find_by(params[:lecture_id])
+		
+		@lecture = Lecture.find(params[:id])
+		@schools = current_user.schools
 	end
 
 	def update
-		@lecture = Lecture.find_by(params[:lecture_id])
+		
+		@lecture = Lecture.find(params[:id])
 		@lecture.update(lecture_params)
 
 		if @lecture.save
@@ -60,7 +64,7 @@ class LecturesController < ApplicationController
 	private
 
 	def lecture_params
-		params.require(:lecture).permit(:name, :time, :day, :location, :semester, :school_id)
+		params.require(:lecture).permit(:name, :time, :day, :location, :semester, :school_id, :year)
 	end
 
 	def require_teacher

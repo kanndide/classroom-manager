@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'signin' => 'sessions#new'
   post 'signin' => 'sessions#create'
   post '/logout', to: 'sessions#destroy'
+  post '/add_to_schedule', to: 'user_lectures#create'
   resources :schools, only: [:index, :show, :create, :update, :destroy] do
     resources :lectures, only: [:index]
   end
@@ -14,7 +15,6 @@ Rails.application.routes.draw do
   	resources :lectures, only: [:index, :new, :edit, :show]
     resources :school_users, only: [:new]
   end
-  resources :user_lectures, only: [:create]
   resources :school_users, only: [:create]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

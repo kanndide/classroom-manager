@@ -1,10 +1,24 @@
-<h1> Sign In </h1>
-<%= form_tag('/signin', method: "post") do |f| %>
-	<%= label_tag :username %>
-	<%= text_field_tag :username %><br>
-	<%= label_tag :password %>
-	<%= text_field_tag :password %><br>
-	<%= submit_tag 'Sign In'%><br>
-<% end %>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1>Sign In</h1>
+	</div>
+	<div class="panel-body">
+		<%= bootstrap_form_tag url: '/signin', method: "post" , layout: :inline do |f| %>
+			<%= f.text_field :username %><br>
+			<br>
+			<%= f.password_field :password %><br>
+			<br>
+			<%= f.submit 'Sign In', class: 'btn-primary, btn-md' %><br>
+		<% end %><br>
+		<br>
 
-<%= link_to 'Twitter', '/auth/twitter' %>
+		<h5>Or, Sign In with your social media account</h5><br>
+		<%= link_to '/auth/twitter', class: 'btn-info btn-lg' do %>
+			<i class="fa fa-twitter"></i> Twitter
+		<% end %>
+
+	</div>
+</div>
+
+
+

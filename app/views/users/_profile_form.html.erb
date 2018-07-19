@@ -1,4 +1,4 @@
-<%= form_for @user do |f| %>
+<%= bootstrap_form_for @user, layout: :inline do |f| %>
 
 	<% if @user.errors.any? %>
 	  <div id="error_explanation">
@@ -15,21 +15,21 @@
 	  </div>
 	<% end %>
 
-	<%= f.label :first_name %>
 	<%= f.text_field :first_name, :required => true %><br>
-	<%= f.label :last_name %>
+	<br>
 	<%= f.text_field :last_name, :required => true %><br>
-	<%= f.label :email %>
+	<br>
 	<%= f.text_field :email, :required => true %><br>
-	<%= f.label "Tell us about yourself:" %><br>
-	<%= f.text_area :bio %><br>
+	<br>
+	<%= f.text_area :bio, rows: '7' %><br>
+	<br>
 
 	<% if current_user.admin %>
-		<%= f.label :teacher %>
 		<%= f.check_box :teacher %><br>
-		<%= f.label :admin %>
+		<br>
 		<%= f.check_box :admin %><br>
+		<br>
 	<% end %>
 
-	<%= f.submit %>
+	<%= f.submit "Update Profile", class: 'btn-primary btn-md' %>
 <% end %>

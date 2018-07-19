@@ -9,5 +9,7 @@
 	<%= f.text_field :semester %><br>
 	<%= f.label "Please choose a school for this lecture:" %><br>
 	<%= f.collection_select(:school_id, @schools, :id, :name) %><br>
+	<%= f.label "Select Year" %>
+	<%= f.select :year, (Time.zone.now.year)..(Time.zone.now.year + 1) %>
 	<%= f.submit %>
 <% end %>

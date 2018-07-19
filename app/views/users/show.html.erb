@@ -1,27 +1,32 @@
-<h1><%= @user.username %></h1>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1><%= @user.username %></h1>
 
-<% if @user.teacher %>
-	<h3>Teacher</h3>
-<% end %>
-
-<% if @user.is_profile_complete? %>
-	<p><%= @user.first_name %> <%= @user.last_name %></p><br>
-	<% if @user.has_school? %>
-		<% @user.schools.each do |school| %>
-			<p><%= school.name %></p><br>
+		<% if @user.teacher %>
+			<h3>Teacher</h3>
 		<% end %>
-	<% else %>
-		<% if @user == current_user %>
-			<%= link_to "Please associate with your school.", new_user_school_user_path(@user) %><br>
+
+	</div>
+	<div class="panel-body">
+		
+		<% if @user.is_profile_complete? %>
+			<p><%= @user.first_name %> <%= @user.last_name %></p><br>
+			<% if @user.has_school? %>
+				<% @user.schools.each do |school| %>
+					<p><%= link_to school.name, school_path(school) %></p><br>
+				<% end %>
+			<% else %>
+				<% if @user == current_user %>
+					<%= link_to "Please associate with your school.", new_user_school_user_path(@user) %><br>
+				<% else %>
+					<p>No school associated yet.</p>
+				<% end %>
+			<% end %>
+			<p><%= @user.email %></p><br>
+			<h5>About Me:</h5>
+			<p><%= @user.bio %></p><br>
 		<% else %>
-			<p>No school associated yet.</p>
+			<%= link_to "Please complete your profile.", edit_user_path(@user) %><br>
 		<% end %>
-	<% end %>
-	<p><%= @user.email %></p><br>
-	<h5>About Me:</h5>
-	<p><%= @user.bio %></p><br>
-<% else %>
-	<%= link_to "Please complete your profile.", edit_user_path(@user) %><br>
-<% end %>
-
-<%= link_to "Log Out", logout_path, action: 'destroy', method: 'post' %>
+	</div>
+</div>
