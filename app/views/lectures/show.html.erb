@@ -13,11 +13,18 @@
 		<p><%= @lecture.location %></p><br>
 
 		<% if current_user.teacher && @lecture.teacher.include?(current_user) || current_user.admin %>
-			<%= link_to "Delete Lecture", lecture_path(@lecture), action: 'destroy', method: 'delete' %><br>
-			<%= link_to "Edit Lecture", edit_user_lecture_path(current_user, @lecture) %>
+			<%= link_to edit_user_lecture_path(current_user, @lecture), class: "btn-primary btn-lg" do %>
+				<i class="glyphicon glyphicon-pencil"></i> Edit Lecture
+            <% end %></p><br>
+			<br>
+			<%= link_to lecture_path(@lecture), action: 'destroy', method: 'delete', class: "btn-danger btn-lg" do %>
+				<i class="fa fa-trash"></i> Delete Lecture
+            <% end %></p><br>
 		<% else %>
 			<% if !current_user.lectures.include?(@lecture) %>
-				<%= button_to "Add Lecture to Schedule", add_to_schedule_path, params: {:id => @lecture.id} %><br>
+				<%= button_to add_to_schedule_path, params: {:id => @lecture.id}, class: "btn-primary btn-lg" do %>
+					<i class="glyphicon glyphicon-add"></i> Add Lecture
+            	<% end %></p><br>
 			<% end %>
 		<% end %>
 
