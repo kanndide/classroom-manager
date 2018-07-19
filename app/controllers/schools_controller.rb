@@ -49,7 +49,8 @@ class SchoolsController < ApplicationController
 	end
 
 	def destroy
-
+		School.find(params[:id]).destroy
+		redirect_to user_schools_path(current_user)
 	end
 
 	private

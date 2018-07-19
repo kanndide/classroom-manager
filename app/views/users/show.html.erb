@@ -25,8 +25,15 @@
 			<p><%= @user.email %></p><br>
 			<h5>About Me:</h5>
 			<p><%= @user.bio %></p><br>
+			<br>
 		<% else %>
 			<%= link_to "Please complete your profile.", edit_user_path(@user) %><br>
+			<br>
+		<% end %>
+		<% if current_user.admin %>
+			<%= link_to user_path(current_user), action: 'destroy', method: 'delete', class: 'btn-danger btn-sm' do %>
+                <i class="fa fa-trash"></i> Delete Account
+              <% end %>
 		<% end %>
 	</div>
 </div>

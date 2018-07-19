@@ -1,0 +1,17 @@
+<% if @school.errors.any? %>
+	  <div class="panel panel-danger" id="error_explanation">
+		<div class="panel-heading">
+		    <h2>
+		      <%= pluralize(@school.errors.count, "error") %>
+		      prohibited this school from being saved:
+		    </h2>
+		</div>
+		<div class="panel-body">
+		    <ul>
+			    <% @school.errors.full_messages.each do |msg| %>
+			      <li><%= msg %></li>
+			    <% end %>
+		    </ul>
+		</div>
+	 </div>
+<% end %>

@@ -1,19 +1,6 @@
 <%= bootstrap_form_for @school, layout: :inline do |f| %>
 	
-	<% if @school.errors.any? %>
-	  <div id="error_explanation">
-	    <h2>
-	      <%= pluralize(@school.errors.count, "error") %>
-	      prohibited this post from being saved:
-	    </h2>
-	 
-	    <ul>
-	    <% @school.errors.full_messages.each do |msg| %>
-	      <li><%= msg %></li>
-	    <% end %>
-	    </ul>
-	  </div>
-	<% end %>
+	<%= render 'errors' %>
 
 	<%= f.text_field :name %><br>
 	<br>

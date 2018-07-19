@@ -32,19 +32,25 @@
       <% if current_user != nil %>  
         <% if current_user.id == params[:id].to_i || current_user.admin  %>
           <div class="col-sm-2 sidenav">
-            
-            <p><%= link_to user_lectures_path(current_user), class: 'btn-success btn-lg' do %>
-              <i class="glyphicon glyphicon-tasks"></i> View Schedule
-            <% end %><p><br>
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h5>User Controls</h5>
+              </div>   
+              <div class="panel-body">
+                <p><%= link_to user_lectures_path(current_user), class: 'btn-success btn-sm' do %>
+                  <i class="glyphicon glyphicon-tasks"></i> View Schedule
+                <% end %></p><br>
 
-            <p><%= link_to edit_user_path(User.find(params[:id])), class: 'btn-info btn-lg' do %>
-              <i class="glyphicon glyphicon-pencil"></i> Edit Profile
-            <% end %></p><br>
+                <p><%= link_to edit_user_path(current_user), class: 'btn-info btn-sm' do %>
+                  <i class="glyphicon glyphicon-pencil"></i> Edit Profile
+                <% end %></p><br>
 
-            <p><%= link_to user_path(User.find(params[:id])), action: 'destroy', method: 'delete', class: 'btn-danger btn-sm' do %>
-                <i class="fa fa-trash"></i> Delete Account
-              <% end %></p><br>
+                <p><%= link_to user_path(current_user), action: 'destroy', method: 'delete', class: 'btn-danger btn-sm' do %>
+                    <i class="fa fa-trash"></i> Delete Account
+                  <% end %></p><br>
 
+              </div>
+            </div>
           </div>
         <% else %>
           <div class="col-sm-2 sidenav">
@@ -82,13 +88,27 @@
         <% if current_user.admin  %>
 
           <div class="col-sm-2 sidenav">
-            <p><%= link_to "Add School", new_user_school_path(current_user), class: 'btn-success btn-lg' %><p><br>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h5>Admin Controls</h5>
+              </div>
+              <div class="panel-body">
+                <p><%= link_to "Add School", new_user_school_path(current_user), class: 'btn-success btn-sm' %></p><br>
+              </div>
+            </div>
           </div>
 
         <% elsif current_user.teacher %>
 
           <div class="col-sm-2 sidenav">
-            <p><%= link_to "Create Lecture", new_user_lecture_path(current_user), class: 'btn-success btn-lg' %><p><br>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h5>Teacher Controls</h5>
+              </div>
+              <div class="panel-body">
+                <p><%= link_to "Create Lecture", new_user_lecture_path(current_user), class: 'btn-success btn-sm' %></p><br>
+              </div>
+            </div>
           </div>
 
         <% elsif !current_user.teacher && !current_user.admin%>
@@ -110,7 +130,7 @@
         
           </div>
         <% end %>
-        <% else %>
+      <% else %>
           <div class="col-sm-2 sidenav">
         
             <div class="well">

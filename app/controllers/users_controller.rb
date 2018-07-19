@@ -12,21 +12,16 @@ class UsersController < ApplicationController
 	end
 
 	def create
+		@user = User.new(user_params)
 		if User.exists?(:username => params[:user][:username])
 			flash[:danger] = "Sorry, that username already exists."
 			redirect_to new_user_path
-		elsif password_confirmation
-			@user = User.new(user_params)
-			if @user.save
-				log_in(@user)
-				flash[:success] = "You're account is activated."
-				redirect_to user_path(@user)
-			else
-				flash[:danger] = "Something went wrong. Please try again."
-				render :new
-			end
-		elsif !password_confirmation
-			flash[:danger] = "The passwords must match."
+		elsif @user.save
+			log_in(@user)
+			flash[:success] = "You're account is activated."
+			redirect_to user_path(@user)
+		else
+			flash[:danger] = "Something went wrong. Please try again."
 			render :new
 		end
 		
@@ -63,7 +58,7 @@ class UsersController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:username, :password, :email, :first_name, :last_name, :bio, :teacher, :admin)
+		params.require(:user).permit(:username, :password, :password_confirmation, :email, :first_name, :last_name, :bio, :teacher, :admin)
 	end
 
 	def require_login
@@ -74,7 +69,7 @@ class UsersController < ApplicationController
 	end
 
 	def password_confirmation
-		params[:password] == params[:password_confirmation]
+		params[:user][:password] == params[:user][:password_confirmation]
 	end
 
 	def set_user
