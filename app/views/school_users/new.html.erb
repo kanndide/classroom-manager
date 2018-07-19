@@ -1,5 +1,11 @@
-<h1>Please associate with your school.</h1>
-<%= form_for @schooluser do |f| %>
-	<%= f.collection_select(:school_id, @schools, :id, :name) %>
-	<%= f.submit "Create Association" %>
-<% end %>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1>Please associate with your school.</h1>
+	</div>
+	<div class="panel-body">
+		<%= form_for @schooluser do |f| %>
+			<%= f.collection_select(:school_id, @schools, :id, :name) %>
+			<%= f.submit "Create Association" %>
+		<% end %>
+	</div>
+</div>

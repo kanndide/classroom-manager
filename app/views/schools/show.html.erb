@@ -1,9 +1,16 @@
-<h1><%= @school.name %></h1>
-<h3> List of all available lectures:</h3>
-<% @school.lectures.each do |lecture| %>
-	<%= link_to "#{lecture.name}, #{lecture.teacher_names} - #{lecture.time}", lecture_path(lecture) %><br>
-<% end %>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1><%= @school.name %></h1>
+	</div>
+	<div class="panel-body">
+		<h3> List of all available lectures:</h3>
+		
+		<% @school.lectures.each do |lecture| %>
+			<%= link_to "#{lecture.name}, #{lecture.teacher_names} - #{lecture.time}", lecture_path(lecture) %><br>
+		<% end %>
 
-<% if current_user.admin %>
-	<%= link_to "Edit School", edit_user_school_path(current_user), class: 'btn-primary btn-lg' %>
-<% end %>
+		<% if current_user.admin %>
+			<%= link_to "Edit School", edit_user_school_path(current_user), class: 'btn-primary btn-lg' %>
+		<% end %>
+	</div>
+</div>

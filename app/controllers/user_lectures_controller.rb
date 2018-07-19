@@ -1,7 +1,6 @@
 class UserLecturesController < ApplicationController
 
 	def create
-		binding.pry
 		@lecture = Lecture.find(params[:id])
 		UserLecture.create(:user_id => current_user.id, :lecture_id => @lecture.id)
 		flash[:success] = "Lecture has been successfully added to your schedule."

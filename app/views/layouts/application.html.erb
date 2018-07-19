@@ -59,6 +59,18 @@
         
           </div>
         <% end %>
+      <% else %>
+        <div class="col-sm-2 sidenav">
+        
+            <div class="well">
+              <p>Something should go here.</p>
+            </div>
+        
+            <div class="well">
+              <p>I wonder what.</p>
+            </div>
+        
+          </div>
       <% end %>
 
       
@@ -79,6 +91,25 @@
             <p><%= link_to "Create Lecture", new_user_lecture_path(current_user), class: 'btn-success btn-lg' %><p><br>
           </div>
 
+        <% elsif !current_user.teacher && !current_user.admin%>
+          
+          <div class="col-sm-2 sidenav">
+              <p><%= link_to "Find Lectures",  schools_path, class: 'btn-success btn-lg' %></p><br>
+            </div>
+
+        <% else %>
+          <div class="col-sm-2 sidenav">
+            
+            <div class="well">
+              <p>Something should go here.</p>
+            </div>
+        
+            <div class="well">
+              <p>I wonder what.</p>
+            </div>
+        
+          </div>
+        <% end %>
         <% else %>
           <div class="col-sm-2 sidenav">
         
@@ -91,7 +122,6 @@
             </div>
         
           </div>
-        <% end %>
       <% end %>
     </div> <!-- Container end -->
   </body>

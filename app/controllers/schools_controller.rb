@@ -1,7 +1,7 @@
 class SchoolsController < ApplicationController
 
 	before_action :require_admin
-	skip_before_action :require_admin, only: [:show]
+	skip_before_action :require_admin, only: [:index, :show]
 
 	def index
 		@schools = School.all

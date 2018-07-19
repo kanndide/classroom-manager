@@ -1,4 +1,10 @@
-<h1>Find a school.</h1>
-<% @schools.each do |school| %>
-	<%= link_to school.name, school_path(school) %><br>
-<% end %>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1>Schools</h1>
+	</div>
+	<div class="panel-body">
+		<% @schools.each do |school| %>
+			<%= link_to school.name, school_path(school) %><br>
+		<% end %>
+	</div>
+</div>
