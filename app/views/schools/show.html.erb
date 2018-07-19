@@ -3,3 +3,7 @@
 <% @school.lectures.each do |lecture| %>
 	<%= link_to "#{lecture.name}, #{lecture.teacher_names} - #{lecture.time}", lecture_path(lecture) %><br>
 <% end %>
+
+<% if current_user.admin %>
+	<%= link_to "Edit School", edit_user_school_path(current_user), class: 'btn-primary btn-lg' %>
+<% end %>

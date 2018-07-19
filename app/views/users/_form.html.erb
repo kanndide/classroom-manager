@@ -21,6 +21,9 @@
 	<br>
 	<%= f.password_field :password_confirmation, label: "Confirm Password" %><br>
 	<br>
-	<%= f.submit 'Update Password', class: 'btn-primary btn-md' %>
-	
+	<% if current_user != nil %>
+		<%= f.submit 'Update Password', class: 'btn-primary btn-md' %>
+	<% else %>
+		<%= f.submit 'Submit', class: 'btn-primary btn-lg' %>
+	<% end %>
 <% end %>

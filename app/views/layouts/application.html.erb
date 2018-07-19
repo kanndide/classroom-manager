@@ -29,21 +29,24 @@
         </div>
       </div>
    
-      <% if !!@user %>   
+      <% if current_user != nil %>  
         <% if current_user.id == params[:id].to_i || current_user.admin  %>
           <div class="col-sm-2 sidenav">
+            
             <p><%= link_to user_lectures_path(current_user), class: 'btn-success btn-lg' do %>
               <i class="glyphicon glyphicon-tasks"></i> View Schedule
             <% end %><p><br>
+
             <p><%= link_to edit_user_path(User.find(params[:id])), class: 'btn-info btn-lg' do %>
               <i class="glyphicon glyphicon-pencil"></i> Edit Profile
             <% end %></p><br>
+
             <p><%= link_to user_path(User.find(params[:id])), action: 'destroy', method: 'delete', class: 'btn-danger btn-sm' do %>
                 <i class="fa fa-trash"></i> Delete Account
               <% end %></p><br>
+
           </div>
-        <% end %>
-      <% else %>
+        <% else %>
           <div class="col-sm-2 sidenav">
         
             <div class="well">
@@ -55,6 +58,7 @@
             </div>
         
           </div>
+        <% end %>
       <% end %>
 
       
@@ -62,19 +66,20 @@
         <%= yield %>
       </div>
 
-      <% if !!@user %>   
-        <% if current_user.id == params[:id].to_i || current_user.admin  %>
+      <% if current_user != nil %>   
+        <% if current_user.admin  %>
+
           <div class="col-sm-2 sidenav">
             <p><%= link_to "Add School", new_user_school_path(current_user), class: 'btn-success btn-lg' %><p><br>
-            <p><%= link_to edit_user_path(User.find(params[:id])), class: 'btn-info btn-lg' do %>
-              <i class="glyphicon glyphicon-pencil"></i> Edit Profile
-            <% end %></p><br>
-            <p><%= link_to user_path(User.find(params[:id])), action: 'destroy', method: 'delete', class: 'btn-danger btn-sm' do %>
-                <i class="fa fa-trash"></i> Delete Account
-              <% end %></p><br>
           </div>
-        <% end %>
-      <% else %>
+
+        <% elsif current_user.teacher %>
+
+          <div class="col-sm-2 sidenav">
+            <p><%= link_to "Create Lecture", new_user_lecture_path(current_user), class: 'btn-success btn-lg' %><p><br>
+          </div>
+
+        <% else %>
           <div class="col-sm-2 sidenav">
         
             <div class="well">
@@ -86,6 +91,7 @@
             </div>
         
           </div>
+        <% end %>
       <% end %>
     </div> <!-- Container end -->
   </body>

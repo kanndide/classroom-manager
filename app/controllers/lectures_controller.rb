@@ -4,7 +4,6 @@ class LecturesController < ApplicationController
 	skip_before_action :require_teacher, only: [:index, :show]
 
 	def index
-		
 		@lectures = current_user.lectures
 	end
 
@@ -14,7 +13,6 @@ class LecturesController < ApplicationController
 	end
 
 	def create
-		binding.pry
 		if Lecture.exists?(params[:lecture])
 			flash[:danger] = "That lecture already exists in our system."
 			redirect_to new_user_lecture_path(current_user)

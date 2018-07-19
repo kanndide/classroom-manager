@@ -1,17 +1,24 @@
-<h1>Scheduled Lectures</h1>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1>Scheduled Lectures</h1>
+	</div>
+	<div class="panel-body">
 
-<h3><%= Time.zone.now.year %></h3>
+		<h3><%= Time.zone.now.year %></h3>
 
-<% @lectures.each do |lecture| %>
-	<% if lecture.year == Time.zone.now.year %>
-		<%= link_to "#{lecture.semester} - #{lecture.name}, #{lecture.teacher_names}", lecture_path(lecture) %><br>
-	<% end %>
-<% end %>
+		<% @lectures.each do |lecture| %>
+			<% if lecture.year.to_i == Time.zone.now.year %>
+				<%= link_to "#{lecture.semester} - #{lecture.name}, #{lecture.teacher_names}", lecture_path(lecture) %><br>
+			<% end %>
+		<% end %>
 
-<h3><%= Time.zone.now.year + 1 %></h3>
+		<h3><%= Time.zone.now.year + 1 %></h3>
 
-<% @lectures.each do |lecture| %>
-	<% if lecture.year == Time.zone.now.year + 1 %>
-			<%= link_to "#{lecture.semester} - #{lecture.name}, #{lecture.teacher_names}", lecture_path(lecture) %><br>
-	<% end %>
-<% end %>
+		<% @lectures.each do |lecture| %>
+			<% if lecture.year.to_i == Time.zone.now.year + 1 %>
+					<%= link_to "#{lecture.semester} - #{lecture.name}, #{lecture.teacher_names}", lecture_path(lecture) %><br>
+			<% end %>
+		<% end %>
+
+	</div>
+</div>

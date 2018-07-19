@@ -1,18 +1,25 @@
-<h1><%= @lecture.name %></h1>
-<% @users.each do |user| %>
-	<% if user.teacher %>
-		<h3>Teacher: <%= user.last_name %>, <%= user.first_name %></h3>
-	<% end %>
-<% end %>
-<h5><%= @lecture.semester %>, Semester - <%= @lecture.year %></h5><br>
-<p><%= @lecture.time %></p><br>
-<p><%= @lecture.location %></p><br>
-
-	<% if current_user.teacher && @lecture.teacher.include?(current_user) || current_user.admin %>
-		<%= link_to "Delete Lecture", lecture_path(@lecture), action: 'destroy', method: 'delete' %><br>
-		<%= link_to "Edit Lecture", edit_user_lecture_path(current_user, @lecture) %>
-	<% else %>
-		<% if !current_user.lectures.include?(@lecture) %>
-			<%= button_to "Add Lecture to Schedule", add_to_schedule_path, params: {:id => @lecture.id} %><br>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1><%= @lecture.name %></h1>
+	</div>
+	<div class="panel-body">
+		<% @users.each do |user| %>
+			<% if user.teacher %>
+				<h3>Teacher: <%= user.last_name %>, <%= user.first_name %></h3>
+			<% end %>
 		<% end %>
-	<% end %>
+		<h5><%= @lecture.semester %>, Semester - <%= @lecture.year %></h5><br>
+		<p><%= @lecture.time %></p><br>
+		<p><%= @lecture.location %></p><br>
+
+		<% if current_user.teacher && @lecture.teacher.include?(current_user) || current_user.admin %>
+			<%= link_to "Delete Lecture", lecture_path(@lecture), action: 'destroy', method: 'delete' %><br>
+			<%= link_to "Edit Lecture", edit_user_lecture_path(current_user, @lecture) %>
+		<% else %>
+			<% if !current_user.lectures.include?(@lecture) %>
+				<%= button_to "Add Lecture to Schedule", add_to_schedule_path, params: {:id => @lecture.id} %><br>
+			<% end %>
+		<% end %>
+
+	</div>
+</div>

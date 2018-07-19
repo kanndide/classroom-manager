@@ -1,15 +1,20 @@
-<%= form_for @lecture do |f| %>
-	<%= f.label :name %>
+<%= bootstrap_form_for @lecture, layout: :inline do |f| %>
+
 	<%= f.text_field :name %><br>
-	<%= f.label :time %>
+	<br>				
 	<%= f.text_field :time %><br>
-	<%= f.label :day %>
+	<br>	
 	<%= f.text_field :day %><br>
-	<%= f.label :semester %>
+	<br>
 	<%= f.text_field :semester %><br>
-	<%= f.label "Please choose a school for this lecture:" %><br>
-	<%= f.collection_select(:school_id, @schools, :id, :name) %><br>
-	<%= f.label "Select Year" %>
-	<%= f.select :year, (Time.zone.now.year)..(Time.zone.now.year + 1) %>
-	<%= f.submit %>
+	<br>
+	<%= f.text_field :location %><br>
+	<br>
+	<%= f.collection_select(:school_id, @schools, :id, :name)%><br>
+	<br>	
+	<%= f.select :year, (Time.zone.now.year)..(Time.zone.now.year + 1), label: "Select Year" %><br>
+	<br>
+	<%= f.submit "Add Lecture", class: 'btn-primary btn-lg' %><br>
+	<br>
+
 <% end %>

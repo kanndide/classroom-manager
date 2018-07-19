@@ -32,11 +32,11 @@ class SchoolsController < ApplicationController
 	end
 
 	def edit
-		@school = School.find_by(params[:school_id])
+		@school = School.find_by(params[:id])
 	end
 
 	def update
-		@school = School.find_by(params[:school_id])
+		@school = School.find_by(params[:id])
 		@school.update(school_params)
 
 		if @school.save
