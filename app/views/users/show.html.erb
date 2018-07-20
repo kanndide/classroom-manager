@@ -31,7 +31,9 @@
 			<br>
 		<% end %>
 		<% if current_user.admin %>
-			<%= link_to user_path(current_user), action: 'destroy', method: 'delete', class: 'btn-danger btn-sm' do %>
+			<%= link_to "Edit Profile", edit_user_path(@user), class: 'btn-primary btn-sm' %><br> 
+			<br>
+			<%= link_to user_path(@user), action: 'destroy', method: 'delete', class: 'btn-danger btn-sm' do %>
                 <i class="fa fa-trash"></i> Delete Account
               <% end %>
 		<% end %>

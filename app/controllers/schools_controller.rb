@@ -60,13 +60,6 @@ class SchoolsController < ApplicationController
 		params.require(:school).permit(:name)
 	end
 
-	def require_admin
-		if !current_user.admin
-			flash[:danger] = "You must be Admin in order to access this feature."
-			redirect_to user_path(current_user)
-		end
-	end
-
 	def set_school
 		if params[:id]
 			@school = School.find(params[:id])

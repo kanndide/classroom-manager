@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
 
 	before_action :require_login
+	before_action :require_admin, only: [:index]
 	skip_before_action :require_login, only: [:new, :create]
+
+	def index
+		@schools = School.all
+		@users = User.all
+	end
 
 	def new
 		if logged_in?
@@ -49,10 +55,16 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
-		User.find(params[:id]).destroy
-		session.delete(:user_id)
-		flash[:success] = "You're account has been deleted."
-		redirect_to root_path
+		if current_user.admin
+			set_user.destroy
+			flash[:success] = "Account Deleted"
+			redirect_to users_path
+		else
+			set_user.destroy
+			session.delete(:user_id)
+			flash[:success] = "You're account has been deleted."
+			redirect_to root_path
+		end
 	end
 
 	private
