@@ -30,7 +30,6 @@
       </div>
    
       <% if current_user != nil %>  
-        <% if current_user.id == params[:id].to_i || current_user.admin  %>
 
           <div class="col-sm-2 sidenav">
             
@@ -51,7 +50,7 @@
             <% end %>
 
           </div>  <!--- Side Nav end --->
-        <% else %>
+      <% else %>
           <div class="col-sm-2 sidenav">
         
             <div class="well">
@@ -63,21 +62,7 @@
             </div>
         
           </div> <!--- Side Nav end --->
-        <% end %>
-      <% else %>
-        <div class="col-sm-2 sidenav">
-        
-            <div class="well">
-              <p>Something should go here.</p>
-            </div>
-        
-            <div class="well">
-              <p>I wonder what.</p>
-            </div>
-        
-          </div> <!--- Side Nav end --->
       <% end %>
-
       
       <div class="col-sm-10 text-centered"> 
         <%= yield %>
