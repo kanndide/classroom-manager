@@ -1,14 +1,14 @@
 class SchoolsController < ApplicationController
 
 	before_action :require_admin
-	skip_before_action :require_admin, only: [:index, :show]
+	skip_before_action :require_admin, only: [:show]
 
 	def index
 		@schools = School.all
 	end
 
 	def new
-		@school = School.new
+		set_school
 	end
 
 	def create
@@ -28,15 +28,15 @@ class SchoolsController < ApplicationController
 	end
 
 	def show
-		@school = School.find(params[:id])
+		set_school
 	end
 
 	def edit
-		@school = School.find_by(params[:id])
+		set_school
 	end
 
 	def update
-		@school = School.find_by(params[:id])
+		set_school
 		@school.update(school_params)
 
 		if @school.save
@@ -49,8 +49,9 @@ class SchoolsController < ApplicationController
 	end
 
 	def destroy
-		School.find(params[:id]).destroy
-		redirect_to user_schools_path(current_user)
+		set_school.destroy
+		flash[:success] = "School Deleted"
+		redirect_to schools_path
 	end
 
 	private
@@ -64,6 +65,15 @@ class SchoolsController < ApplicationController
 			flash[:danger] = "You must be Admin in order to access this feature."
 			redirect_to user_path(current_user)
 		end
+	end
+
+	def set_school
+		if params[:id]
+			@school = School.find(params[:id])
+		else
+			@school = School.new
+		end
+		@school
 	end
 
 end

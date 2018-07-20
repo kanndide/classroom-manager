@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get 'signin' => 'sessions#new'
   post 'signin' => 'sessions#create'
   post '/logout', to: 'sessions#destroy'
-  post '/add_to_schedule', to: 'user_lectures#create'
+  post '/add_to_schedule', to: 'user_lectures#create' #There is probably a better way to do this
+  post '/remove_from_schedule', to: 'user_lectures#destroy' #There is probably a better way to do this
   resources :schools, only: [:index, :show, :create, :update, :destroy] do
     resources :lectures, only: [:index]
   end

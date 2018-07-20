@@ -35,7 +35,6 @@ class LecturesController < ApplicationController
 	end
 
 	def edit
-		
 		@lecture = Lecture.find(params[:id])
 		@schools = current_user.schools
 	end

@@ -7,4 +7,11 @@ class UserLecturesController < ApplicationController
 		redirect_to user_lectures_path(current_user)
 	end
 
+	def destroy
+		@userlecture = UserLecture.where(:user_id => 1, :lecture_id => 10)
+		@userlecture.each {|x| x.destroy}
+		flash[:success] = "Lecture has been removed from your scheudle"
+		redirect_to user_lectures_path(current_user)
+	end
+
 end

@@ -3,15 +3,27 @@
 		<h1><%= @lecture.name %></h1>
 	</div>
 	<div class="panel-body">
-		<% @users.each do |user| %>
-			<% if user.teacher %>
-				<h3>Teacher: <%= user.last_name %>, <%= user.first_name %></h3>
-			<% end %>
-		<% end %>
-		<h5><%= @lecture.semester %>, Semester - <%= @lecture.year %></h5><br>
-		<p><%= @lecture.time %></p><br>
-		<p><%= @lecture.location %></p><br>
-
+		<div class="row">
+			<div class="col-sm-6">
+				<% @users.each do |user| %>
+					<% if user.teacher %>
+						<h3>Teacher: <%= user.last_name %>, <%= user.first_name %></h3>
+					<% end %>
+				<% end %>
+				<h5><%= @lecture.semester %>, Semester - <%= @lecture.year %></h5><br>
+				<p><%= @lecture.time %></p><br>
+				<p><%= @lecture.location %></p><br>
+			</div>
+			<div class='col-sm-6'>
+				<h3>Roster</h3>
+				<% @users.sort_by(&:last_name).each do |user| %>
+					<% if !user.teacher %>
+						<p><%= link_to "#{user.last_name}, #{user.first_name}", user_path(user) %></p>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+		
 		<% if current_user.teacher && @lecture.teacher.include?(current_user) || current_user.admin %>
 			<%= link_to edit_user_lecture_path(current_user, @lecture), class: "btn-primary btn-lg" do %>
 				<i class="glyphicon glyphicon-pencil"></i> Edit Lecture
@@ -25,8 +37,12 @@
 				<%= button_to add_to_schedule_path, params: {:id => @lecture.id}, class: "btn-primary btn-lg" do %>
 					<i class="glyphicon glyphicon-add"></i> Add Lecture
             	<% end %></p><br>
+            <% else %>
+            	<%= button_to remove_from_schedule_path, params: {:user_id => current_user.id, :lecture_id => @lecture.id}, class: "btn-danger btn-lg" do %>
+					<i class="glyphicon glyphicon-add"></i> Remove Lecture
+            	<% end %></p><br>
 			<% end %>
 		<% end %>
 
-	</div>
+	</div> <!--- Panel Body --->
 </div>

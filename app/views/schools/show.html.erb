@@ -13,7 +13,7 @@
 		<% if current_user.admin %>
 			<%= link_to "Edit School", edit_user_school_path(current_user), class: 'btn-primary btn-lg' %><br>
 			<br>
-			<%= link_to school_path(@school), class: 'btn-danger btn-lg' do %>
+			<%= link_to school_path(@school), action: 'destroy', method: 'delete', class: 'btn-danger btn-lg' do %>
 			<i class="fa fa-trash"></i> Delete School
               <% end %></p><br>
 		<% end %>
