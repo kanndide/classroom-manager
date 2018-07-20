@@ -31,27 +31,26 @@
    
       <% if current_user != nil %>  
         <% if current_user.id == params[:id].to_i || current_user.admin  %>
+
           <div class="col-sm-2 sidenav">
-            <div class="panel panel-primary">
-              <div class="panel-heading">
-                <h5>User Controls</h5>
-              </div>   
-              <div class="panel-body">
-                <p><%= link_to user_lectures_path(current_user), class: 'btn-success btn-sm' do %>
-                  <i class="glyphicon glyphicon-tasks"></i> View Schedule
-                <% end %></p><br>
+            
+            <%= render 'shared/control_panel' %>
 
-                <p><%= link_to edit_user_path(current_user), class: 'btn-info btn-sm' do %>
-                  <i class="glyphicon glyphicon-pencil"></i> Edit Profile
-                <% end %></p><br>
+            <% if current_user.admin  %>
+              
+              <%= render 'shared/admin_panel' %>
 
-                <p><%= link_to user_path(current_user), action: 'destroy', method: 'delete', class: 'btn-danger btn-sm' do %>
-                    <i class="fa fa-trash"></i> Delete Account
-                  <% end %></p><br>
+            <% elsif current_user.teacher %>
 
-              </div>
-            </div>
-          </div>
+              <%= render 'shared/teacher_panel' %>
+
+            <% elsif !current_user.teacher && !current_user.admin%>
+
+              <%= render 'shared/tools_panel' %>
+
+            <% end %>
+
+          </div>  <!--- Side Nav end --->
         <% else %>
           <div class="col-sm-2 sidenav">
         
@@ -63,7 +62,7 @@
               <p>I wonder what.</p>
             </div>
         
-          </div>
+          </div> <!--- Side Nav end --->
         <% end %>
       <% else %>
         <div class="col-sm-2 sidenav">
@@ -76,73 +75,14 @@
               <p>I wonder what.</p>
             </div>
         
-          </div>
+          </div> <!--- Side Nav end --->
       <% end %>
 
       
-      <div class="col-sm-8 text-centered"> 
+      <div class="col-sm-10 text-centered"> 
         <%= yield %>
       </div>
 
-      <% if current_user != nil %>   
-        <% if current_user.admin  %>
-
-          <div class="col-sm-2 sidenav">
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <h5>Admin Controls</h5>
-              </div>
-              <div class="panel-body">
-                <p><%= link_to "Add School", new_user_school_path(current_user), class: 'btn-success btn-sm' %></p><br>
-              </div>
-            </div>
-          </div>
-
-        <% elsif current_user.teacher %>
-
-          <div class="col-sm-2 sidenav">
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <h5>Teacher Controls</h5>
-              </div>
-              <div class="panel-body">
-                <p><%= link_to "Create Lecture", new_user_lecture_path(current_user), class: 'btn-success btn-sm' %></p><br>
-              </div>
-            </div>
-          </div>
-
-        <% elsif !current_user.teacher && !current_user.admin%>
-          
-          <div class="col-sm-2 sidenav">
-              <p><%= link_to "Find Lectures",  schools_path, class: 'btn-success btn-lg' %></p><br>
-            </div>
-
-        <% else %>
-          <div class="col-sm-2 sidenav">
-            
-            <div class="well">
-              <p>Something should go here.</p>
-            </div>
-        
-            <div class="well">
-              <p>I wonder what.</p>
-            </div>
-        
-          </div>
-        <% end %>
-      <% else %>
-          <div class="col-sm-2 sidenav">
-        
-            <div class="well">
-              <p>Something should go here.</p>
-            </div>
-        
-            <div class="well">
-              <p>I wonder what.</p>
-            </div>
-        
-          </div>
-      <% end %>
     </div> <!-- Container end -->
   </body>
 </html>

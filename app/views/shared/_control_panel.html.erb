@@ -1,0 +1,19 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+      <h5>User Controls</h5>
+  </div>   
+  <div class="panel-body">
+    <p><%= link_to user_lectures_path(current_user), class: 'btn-success btn-sm' do %>
+      <i class="glyphicon glyphicon-tasks"></i> View Schedule
+    <% end %></p><br>
+
+    <p><%= link_to edit_user_path(current_user), class: 'btn-info btn-sm' do %>
+      <i class="glyphicon glyphicon-pencil"></i> Edit Profile
+    <% end %></p><br>
+
+    <p><%= link_to user_path(current_user), action: 'destroy', method: 'delete', class: 'btn-danger btn-sm' do %>
+        <i class="fa fa-trash"></i> Delete Account
+      <% end %></p><br>
+
+  </div> <!--- Panel Body --->
+</div>  <!--- Panel Primary --->
