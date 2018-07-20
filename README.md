@@ -6,22 +6,10 @@ The idea behind this app is that a user can log into to see information about th
 [![Build Status](https://travis-ci.org/kanndide/classroom-manager.svg?branch=master)](https://travis-ci.org/kanndide/classroom-manager)
 
 
-Things you may want to cover:
+## Additional Info
 
-* Ruby version
+- At this stage, the app has been styled with Bootsrap, and utilizes bootstrap_forms for rails with a gem. To install gems just run bundle and if you are using poor Iraqi internet like myself, go get a coffee.
 
-* System dependencies
+- No e-mail feature has been added at this time. I hope to be able to rectify that in the future. I am thinking that some changes in the user setup is probably in order. Devise is probably the best option for this.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- In the future I want to be able to add a chat feature for each lecture and the mass email option for the teacher. Probably a job for JS/JQuery.
