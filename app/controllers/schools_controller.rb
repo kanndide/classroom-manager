@@ -1,10 +1,14 @@
 class SchoolsController < ApplicationController
 
 	before_action :require_admin
-	skip_before_action :require_admin, only: [:show, :index]
+	skip_before_action :require_admin, only: [:show, :index, :most_lectures]
 
 	def index
 		@schools = School.all
+	end
+
+	def most_lectures
+		@schools = School.school_with_most_lectures
 	end
 
 	def new

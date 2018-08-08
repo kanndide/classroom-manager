@@ -1,0 +1,10 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1>Schools with most lectures</h1>
+	</div>
+	<div class="panel-body">
+		<% @schools.each do |school| %>
+			<p><%= school[0] %>, <%= school[1] %><p>
+		<% end %>
+	</div>
+</div>

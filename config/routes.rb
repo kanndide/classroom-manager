@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post '/logout', to: 'sessions#destroy'
   post '/add_to_schedule', to: 'user_lectures#create' #There is probably a better way to do this
   post '/remove_from_schedule', to: 'user_lectures#destroy' #There is probably a better way to do this
+  get 'schools/most_lectures', to: 'schools#most_lectures'
   resources :schools, only: [:index, :show, :create, :update, :destroy] do
     resources :lectures, only: [:index]
   end
