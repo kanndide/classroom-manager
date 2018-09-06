@@ -5,6 +5,7 @@ class SchoolsController < ApplicationController
 
 	def index
 		@schools = School.all
+		@school = School.new
 	end
 
 	def most_lectures
@@ -33,6 +34,7 @@ class SchoolsController < ApplicationController
 
 	def show
 		set_school
+		render json: @school
 	end
 
 	def edit
