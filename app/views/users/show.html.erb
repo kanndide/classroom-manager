@@ -12,7 +12,7 @@
 		<% if @user.is_profile_complete? %>
 			<p><%= @user.first_name %> <%= @user.last_name %></p><br>
 			<% if @user.has_school? %>
-				<% @user.schools.each do |school| %>
+				<% @user.schools.uniq.each do |school| %>
 					<p><%= link_to school.name, school_path(school) %></p><br>
 				<% end %>
 			<% else %>
