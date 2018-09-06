@@ -3,8 +3,10 @@
 		<h1>Schools</h1>
 	</div>
 	<div class="panel-body">
-		<% @schools.each do |school| %>
-			<%= link_to school.name, school_path(school) %><br>
+		<%= form_for @school do |f| %>
+			<%= f.collection_select(:id, @schools, :id, :name) %><br>
+			<br>
+			<%= f.submit 'Submit', class: 'btn-primary btn-md', id: 'schoolFindLectures' %>
 		<% end %>
 	</div>
 </div>
