@@ -5,7 +5,18 @@
 	<div class="panel-body">
 		<%= form_for @schooluser do |f| %>
 			<%= f.collection_select(:school_id, @schools, :id, :name) %>
-			<%= f.submit "Create Association" %>
+			<%= f.submit "Create Association", id: "schoolUserSubmit" %>
 		<% end %>
 	</div>
 </div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3> Associated Schools </h3>
+	</div>
+	<div id="associatedSchools">
+		<% current_user.schools.uniq.each do |school| %>
+			<h3><%= school.name %></h3><br>
+		<% end %>
+	</div>
+</div>
+
