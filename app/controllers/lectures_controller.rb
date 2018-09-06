@@ -32,6 +32,12 @@ class LecturesController < ApplicationController
 	def show
 		@lecture = Lecture.find(params[:id])
 		@users = @lecture.users
+		respond_to do |format|
+			format.html { render :show }
+			format.json {
+				render json: @lecture
+			}
+		end
 	end
 
 	def edit
