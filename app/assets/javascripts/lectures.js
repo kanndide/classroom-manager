@@ -1,5 +1,6 @@
-function showLecture(lectureID) {
 
+function showLecture(lectureID) {
+	
 };
 
 function createShowLectureLink(object) {
