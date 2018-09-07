@@ -4,5 +4,8 @@
 	</div>
 	<div class="panel-body">
 		<%= render 'form' %>
+		<%= link_to lecture_path(@lecture), action: 'destroy', method: 'delete', class: "btn-danger btn-sm" do %>
+			<i class="fa fa-trash"></i> Delete Lecture
+        <% end %></p><br>
 	</div>
 </div>
