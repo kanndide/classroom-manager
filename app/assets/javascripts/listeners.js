@@ -4,5 +4,5 @@ $(document).ready(function() {
 
 function attachListeners() {
 	$('#schoolUserSubmit').on('click', () => createAssociatedSchools());
-	$('#schoolFindLectures').on('click', () => showSchoolLectures())
+	$('#schoolFindLectures').on('click', () => showSchoolLectures());
 }
