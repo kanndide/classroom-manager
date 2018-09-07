@@ -6,11 +6,14 @@ function showSchoolLectures() {
 			var school = data["data"]
 			var lectures = school["relationships"]["lectures"]["data"]
 			$('#schoolName').text(school["attributes"].name)
-			// debugger
 			for (let info of lectures){
 				let newId = Number(info.id)
-				
-				$('#schoolLectures').append()
+				$.get(`/lectures/${newId}.json`, function(data) {
+					lecture = data["data"]
+					lectureName = lecture["attributes"]["name"]
+					lectureTime = lecture["attributes"]["time"]
+					$('#schoolLectures').append(`<a href="/lectures/${newId}">${lectureName}, ${lectureTime}</a><br>`)
+				});
 			};
 		});
 	});
