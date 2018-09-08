@@ -5,6 +5,12 @@ class LecturesController < ApplicationController
 
 	def index
 		@lectures = current_user.lectures
+		respond_to do |format|
+			format.html { render :index }
+			format.json {
+				render json: @lectures
+			}
+		end
 	end
 
 	def new
