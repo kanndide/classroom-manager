@@ -18,3 +18,37 @@ function showNewLecture() {
 		});
 	});
 };
+
+function getLectures() {
+	$('#viewSchedule').click(function(event) {
+		event.preventDefault();
+		$.get('/lectures.json', function(data) {
+			var today = new Date()
+			var year = today.getFullYear()
+			var lecturesArray = data["data"]
+			$('#userPanelHeader')[0].innerHTML = '<h1>Scheduled Lectures</h1>'
+			$('#userPanelBody')[0].innerHTML = ''
+			$('#userPanelBody').append(`<h3>${year}</h3>`)
+			for (let lecture of lecturesArray) {
+				lectureYear = Number(lecture["attributes"].year)
+				if(lectureYear === year) {
+					$('#userPanelBody').append(`<a href="/lectures/${Number(lecture.id)}">
+						${lecture["attributes"].semester} - ${lecture["attributes"].name}, ${lecture["attributes"].time}</a><br>`)
+				};
+			};
+			$('#userPanelBody').append(`<h3>${year + 1}</h3>`)
+			for (let lecture of lecturesArray) {
+				lectureYear = Number(lecture["attributes"].year)
+				if(lectureYear === year + 1) {
+					debugger
+					$('#userPanelBody').append(`<a href="/lectures/${Number(lecture.id)}">
+						${lecture["attributes"].semester} - ${lecture["attributes"].name}, ${lecture["attributes"].time}</a><br>`)
+				};
+			};
+		});
+	});
+};
+
+function sortLecturesByYear(lecturesArray) {
+
+};
