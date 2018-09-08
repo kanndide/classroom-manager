@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-	<div class="panel-heading">
+	<div id="userPanelHeader" class="panel-heading">
 		<h1><%= @user.username %></h1>
 
 		<% if @user.teacher %>
@@ -7,7 +7,7 @@
 		<% end %>
 
 	</div>
-	<div class="panel-body">
+	<div id="userPanelBody" class="panel-body">
 		
 		<% if @user.is_profile_complete? %>
 			<p><%= @user.first_name %> <%= @user.last_name %></p><br>
