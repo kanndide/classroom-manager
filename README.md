@@ -5,6 +5,9 @@ The idea behind this app is that a user can log into to see information about th
 ## Build Status
 [![Build Status](https://travis-ci.org/kanndide/classroom-manager.svg?branch=master)](https://travis-ci.org/kanndide/classroom-manager)
 
+## Installation Guide
+
+If you would like to work on this project feel free to fork and clone this repo.
 
 ## Additional Info
 
@@ -12,4 +15,8 @@ The idea behind this app is that a user can log into to see information about th
 
 - No e-mail feature has been added at this time. I hope to be able to rectify that in the future. I am thinking that some changes in the user setup is probably in order. Devise is probably the best option for this.
 
-- In the future I want to be able to add a chat feature for each lecture and the mass email option for the teacher. Probably a job for JS/JQuery.
+- I have added some functionality in with JavaScript and Jquery. At the time of doing this I realized that this was honestly something that should have been started from the begining. Going back and trying to redirect the entire front-end to use JS/JQuery is a big endeavor and because of that I only included some functionality to show a certain degree of profiecency with JavaScript.
+
+## License
+
+[MIT License](https://mit-license.org/)
