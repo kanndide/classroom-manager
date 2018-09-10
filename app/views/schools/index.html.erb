@@ -4,9 +4,9 @@
 	</div>
 	<div class="panel-body">
 		<%= form_for @school do |f| %>
-			<%= f.collection_select(:id, current_user.schools, :id, :name) %><br>
+			<%= f.collection_select(:id, @schools, :id, :name) %><br>
 			<br>
-			<%= f.submit 'Submit', class: 'btn-primary btn-md', id: 'schoolFindLectures' %>
+			<%= f.submit 'Submit', class: 'btn-primary btn-md', id: 'schoolFindLectures', onclick: 'showSchoolLectures()' %>
 		<% end %>
 	</div>
 </div>
