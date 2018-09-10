@@ -68,7 +68,7 @@ class LecturesController < ApplicationController
 
 	def destroy
 		Lecture.find(params[:id]).destroy
-		redirect_to user_lectures_path(current_user)
+		redirect_to user_path(current_user)
 	end
 
 	private
