@@ -12,6 +12,22 @@
 // 	return `<a href="/lectures/${this.id}">${this.semester} - ${this.name}, ${this.time}</a><br>`
 // };
 
+class Lecture {
+	constructor(data) {
+		this.id = Number(data.id);
+		this.name = data["attributes"].name;
+		this.semester = data["attributes"].semester;
+		this.time = data["attributes"].time;
+		this.location = data["attributes"].location;
+		this.day = data["attributes"].day;
+		this.year = Number(data["attributes"].year);
+	};
+
+	formatLectureShowLink() {
+		return `<a href="/lectures/${this.id}">${this.semester} - ${this.name}, ${this.time}</a><br>`
+	};
+};
+
 
 
 function showNewLecture() {
@@ -59,20 +75,4 @@ function getLectures() {
 			};
 		}, "json");
 	});
-};
-
-class Lecture {
-	constructor(data) {
-		this.id = Number(data.id);
-		this.name = data["attributes"].name;
-		this.semester = data["attributes"].semester;
-		this.time = data["attributes"].time;
-		this.location = data["attributes"].location;
-		this.day = data["attributes"].day;
-		this.year = Number(data["attributes"].year);
-	};
-
-	formatLectureShowLink() {
-		return `<a href="/lectures/${this.id}">${this.semester} - ${this.name}, ${this.time}</a><br>`
-	};
 };
