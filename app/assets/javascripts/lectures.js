@@ -1,12 +1,18 @@
-function Lecture(data) {
-	this.id = Number(data.id);
-	this.name = data["attributes"].name;
-	this.semester = data["attributes"].semester;
-	this.time = data["attributes"].time;
-	this.location = data["attributes"].location;
-	this.day = data["attributes"].day;
-	this.year = Number(data["attributes"].year);
-};
+// function Lecture(data) {
+// 	this.id = Number(data.id);
+// 	this.name = data["attributes"].name;
+// 	this.semester = data["attributes"].semester;
+// 	this.time = data["attributes"].time;
+// 	this.location = data["attributes"].location;
+// 	this.day = data["attributes"].day;
+// 	this.year = Number(data["attributes"].year);
+// };
+
+// Lecture.prototype.formatLectureShowLink = function() {
+// 	return `<a href="/lectures/${this.id}">${this.semester} - ${this.name}, ${this.time}</a><br>`
+// };
+
+
 
 function showNewLecture() {
 	$('form').submit(function(event) {
@@ -31,7 +37,7 @@ function showNewLecture() {
 function getLectures() {
 	$('#viewSchedule').click(function(event) {
 		event.preventDefault();
-		$.get('/lectures.json', function(data) {
+		$.get('/lectures', function(data) {
 			var today = new Date()
 			var year = today.getFullYear()
 			var lecturesArray = data["data"]
@@ -51,10 +57,22 @@ function getLectures() {
 					$('#panelBody').append(lecture.formatLectureShowLink())
 				};
 			};
-		});
+		}, "json");
 	});
 };
 
-Lecture.prototype.formatLectureShowLink = function() {
-	return `<a href="/lectures/${this.id}">${this.semester} - ${this.name}, ${this.time}</a><br>`
+class Lecture {
+	constructor(data) {
+		this.id = Number(data.id);
+		this.name = data["attributes"].name;
+		this.semester = data["attributes"].semester;
+		this.time = data["attributes"].time;
+		this.location = data["attributes"].location;
+		this.day = data["attributes"].day;
+		this.year = Number(data["attributes"].year);
+	};
+
+	formatLectureShowLink() {
+		return `<a href="/lectures/${this.id}">${this.semester} - ${this.name}, ${this.time}</a><br>`
+	};
 };
