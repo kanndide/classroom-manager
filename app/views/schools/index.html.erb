@@ -6,7 +6,7 @@
 		<%= form_for @school do |f| %>
 			<%= f.collection_select(:id, @schools, :id, :name) %><br>
 			<br>
-			<%= f.submit 'Submit', class: 'btn-primary btn-md', id: 'schoolFindLectures', onclick: 'showSchoolLectures()' %>
+			<%= f.submit 'Submit', class: 'btn-primary btn-md', id: 'schoolFindLectures' %>
 		<% end %>
 	</div>
 </div>
