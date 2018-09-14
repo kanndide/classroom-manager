@@ -51,7 +51,6 @@ function showNewLecture() {
 };
 
 function getLectures() {
-	$('#viewSchedule').click(function(event) {
 		event.preventDefault();
 		$.get('/lectures', function(data) {
 			var today = new Date()
@@ -73,6 +72,43 @@ function getLectures() {
 					$('#panelBody').append(lecture.formatLectureShowLink())
 				};
 			};
+			$('#panelBody').append(`<button onclick='alphabetize()'>Click Me</button>`)
 		}, "json");
-	});
+};
+
+function alphabetize() {
+	$.get('/lectures', function(data) {
+			var today = new Date()
+			var year = today.getFullYear()
+			var lecturesArray = data["data"]
+			lecturesArray.sort(function(a, b) {
+				  var nameA = a.attributes.name.toUpperCase(); // ignore upper and lowercase
+				  var nameB = b.attributes.name.toUpperCase(); // ignore upper and lowercase
+				  if (nameA < nameB) {
+				    return -1;
+				  }
+				  if (nameA > nameB) {
+				    return 1;
+				  }
+
+				  // names must be equal
+				  return 0;
+				});
+			$('#panelHeader')[0].innerHTML = '<h1>Scheduled Lectures</h1>'
+			$('#panelBody')[0].innerHTML = ''
+			$('#panelBody').append(`<h3>${year}</h3>`)
+			for (let data of lecturesArray) {
+				lecture = new Lecture(data)
+				if(lecture.year === year) {
+					$('#panelBody').append(lecture.formatLectureShowLink())
+				};
+			};
+			$('#panelBody').append(`<h3>${year + 1}</h3>`)
+			for (let data of lecturesArray) {
+				lecture = new Lecture(data)
+				if(lecture.year === year + 1) {
+					$('#panelBody').append(lecture.formatLectureShowLink())
+				};
+			};
+		}, "json");
 };
